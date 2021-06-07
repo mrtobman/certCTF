@@ -27,14 +27,12 @@
         </div>
       </nav>
 
-      <section id="questions" style="display: inline">
+      <section id="site_questions" style="display: inline">
         <h1>Fragenkatalog</h1>
         <br>
         <p style="text-align: justify">
-			<label style="text-indent:10px" class="form-check-label" for="answer_1.1">Es wurde an der Rezeption eine Nachricht für Sie hinterlassen. Die Nachricht lautet: 77656c636f6d65746f74686563657274435446.</label>  
+			<label  class="form-check-label" for="answer_1.1">1.1 Es wurde an der Rezeption eine Nachricht für Sie hinterlassen. Die Nachricht lautet: <i>77656c636f6d65746f74686563657274435446.</i></label>  
 			<div class="row">
-				<div class="col-1">
-				</div>
 				<div class="col-3">
 					<input id="answer_1.1" class="form-control" placeholder="">
 					<small id="answer_1.1_resultcheck" class="form-text text-muted"></small>
@@ -42,17 +40,41 @@
 				<div class="col-3">
 					<button id="btn_1" type="button" class="btn btn-outline-primary">Lösen</button>
 				</div>
-			<div>					
+			<div>				
         </p>
       </section>   
 
-      <section id="score" style="display: none" >
+      <section id="site_score" style="display: none" >
         <h1>Score</h1>
-        <br>
-        <p style="text-align: justify">
-			<p id="score">Score: 0</p>
-            Sed sed volutpat massa. Sed risus sapien, placerat ac enim at, consectetur finibus turpis. Curabitur sollicitudin sit amet ex eu dictum. Duis bibendum tempor porta. Sed eleifend nec neque non molestie. Fusce ac congue nisi, at volutpat quam. In vel tortor sed tortor ultrices pharetra eu id dui. Nam ultrices tincidunt pharetra. Suspendisse semper fermentum interdum. Aliquam in interdum erat.
-        </p>
+        <br>		
+		<label id="score" style="text-align: justify;text-indent:10px">Score: 0</label>
+		
+		<div class="fixed-bottom">
+		<hr>
+		<table border= style="text-indent:10px">
+			<tr>
+				<td class="col-md-2">Bitte tragen Sie Ihren Namen ein:&nbsp;&nbsp;&nbsp;</td>
+				<td class="col-md-3">
+					<input id="user_name" class="form-control" placeholder="">
+				</td>
+				<td class="col-md-1">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Bitte tragen Sie Ihre Email Adresse ein:&nbsp;&nbsp;&nbsp;</td>
+				<td>
+					<input id="user_email" class="form-control" placeholder="">
+				</td>				
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td></td>
+				<td align="right">
+					<button id="send_email" type="button" class="btn btn-outline-primary" >Senden</button>
+				</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>
+		</div>
       </section>
 
 
@@ -62,7 +84,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     
     <script>
-		let score =0;
+		let score =0;		
+		let score_1_1 = 0;
 	
 		//Check navbar clicks
         $('.navbar').on('click', 'a', function(e){    
@@ -74,14 +97,14 @@
             {
                 case "Fragenkatalog":
                 {               
-                    hideElem("score");
-                    showElem("questions");
+                    hideElem("site_score");
+                    showElem("site_questions");
                     break;
                 }
                 case "Score":
                 {
-                    hideElem("questions");
-                    showElem("score");
+                    hideElem("site_questions");
+                    showElem("site_score");
                     break;
                 }
             }
@@ -94,22 +117,29 @@
 			if (result == "welcometothecertCTF")
 			{
 				setInputValueResultCheck("answer_1.1_resultcheck",true);		
+				score_1_1 = 1;
 			}else
 				setInputValueResultCheck("answer_1.1_resultcheck",false);
 		});
 		
 		function setInputValueResultCheck(inputfield,resultcheck){
 			if (resultcheck == true)
-			{
-				score +=1;
-				document.getElementById("demo").innerHTML = "Score: ".score;
-				document.getElementById(inputfield).textContent  = "Korrekt!";
+			{				
+				score_1_1=1;
+				sumScore();
+				document.getElementById("score").innerHTML = "Score: " + score;
+				document.getElementById(inputfield).textContent  = "Korrekt!";				
 			}
 			else 
 			{
 				document.getElementById(inputfield).textContent  = "Inkorrekt!";
 			}
         }
+		
+		function sumScore()
+		{
+			score = score_1_1;
+		}
 		
 		function getInputValue(inputfield){
             // Selecting the input element and get its value 
