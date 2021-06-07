@@ -79,6 +79,17 @@
          "id":15,
          "name":"area_room_A",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"openWebsite",
+                 "type":"string",
+                 "value":"https:\/\/mrtobman.github.io\/certCTF\/htdocs\/questions.html"
+                }, 
+                {
+                 "name":"openWebsiteTrigger",
+                 "type":"string",
+                 "value":"onaction"
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":50,
@@ -128,7 +139,7 @@
          "name":"bottom",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":50,
          "x":0,
          "y":0
