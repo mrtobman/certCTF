@@ -53,15 +53,13 @@
 				<div class="col-1">
 				</div>
 				<div class="col-3">
-					<input class="form-control" id="answer_1.1" placeholder="">
+					<input id="answer_1.1" class="form-control" placeholder="">
+					<small id="answer_1.1_resultcheck" class="form-text text-muted"></small>
 				</div>
 				<div class="col-3">
-					<!--<button id="btn_q1.1" type="button" class="btn btn-outline-primary">Lösen</button>-->
+					<button id="btn_1" type="button" class="btn btn-outline-primary">Lösen</button>
 				</div>
-			<div>
-			
-			<button id="test" type="button" class="btn btn-outline-primary" >Lösen</button>
-			
+			<div>					
         </p>
       </section>   
 
@@ -120,18 +118,32 @@
                 }
             }
 		});
-		
+			
 		//Check q1 button click
-        $('#btn_q1.1').on('click', function(e){   
-			console.log("click");
-            alert($('#answer_1.1').val);
+        $('#btn_1').on('click', function(e){   
+			console.log("Click");
+			result = getInputValue("answer_1.1");
+			
+			if (result == "welcometothecertCTF")
+			{
+				setInputValueResultCheck("answer_1.1_resultcheck",true);		
+			}else
+				setInputValueResultCheck("answer_1.1_resultcheck",false);
 		});
 		
-		//Check q1 button click
-        $('#test').on('click', function(e){   
-			console.log("click");
-            alert($('#answer_1.1').val);
-		});
+		function setInputValueResultCheck(inputfield,resultcheck){
+			if (resultcheck == true)
+				document.getElementById(inputfield).textContent  = "Korrekt!";
+			else 
+				document.getElementById(inputfield).textContent  = "Inkorrekt!";
+        }
+		
+		function getInputValue(inputfield){
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById(inputfield).value;
+            
+			return inputVal;
+        }
             
 		function hideElem(element) 
 		{
